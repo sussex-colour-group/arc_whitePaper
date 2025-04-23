@@ -1,0 +1,9 @@
+[submodule "arc_PsychophysicsAnalysis"]
+	path = arc_PsychophysicsAnalysis
+	url = https://github.com/da5nsy/arc_PsychophysicsAnalysis
+[submodule "arc_ImageAnalysis"]
+	path = arc_ImageAnalysis
+	url = https://github.com/johnmaule/arc_ImageAnalysis/
+[submodule "sussex_nanolambda"]
+	path = sussex_nanolambda
+	url = https://github.com/johnmaule/sussex_nanolambda
