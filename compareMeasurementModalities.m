@@ -41,7 +41,7 @@ means_NL.CL.TromsoSEM = std(MBarray_concat(6,MBarray_concat(5,:) == 0))/sqrt(len
 % See arc_ImageAnalysis/plotMeanMB_hyperspec.m
 load(['arc_ImageAnalysis',filesep,'hyperspectralMBmeans.mat'],'d');
 
-HSmeanMB = NaN(2,1165);
+HSmeanMB = NaN(3,1165);
 for i = 1:size(d,1)
 
     if length(d(i).name) == 14 % please, dearest future humans, use leading zeros when storing data
@@ -50,7 +50,7 @@ for i = 1:size(d,1)
         picId = str2num(d(i).name(1:3));
     end
 
-    HSmeanMB(:,picId) = [d(i).meanMB];
+    HSmeanMB(:,picId) = [d(i).meanMB,d(i).meanMB_CI];
 end
 
 OsloIndex([510:740,952:1165]) = true;
@@ -61,24 +61,24 @@ WinterIndex([952:1165,743:951]) = true;
 
 means_HS.LLM.all = mean(HSmeanMB(1,:),"omitnan");
 means_HS.SLM.all = mean(HSmeanMB(2,:),"omitnan");
-% means_HS.CL.all = mean(HSmeanMB(3,:),"omitnan");
+means_HS.CL.all = mean(HSmeanMB(3,:),"omitnan");
 
 means_HS.LLM.OsloMean = mean(HSmeanMB(1,OsloIndex),"omitnan"); 
 means_HS.SLM.OsloMean = mean(HSmeanMB(2,OsloIndex),"omitnan");
-% means_HS.CL.OsloMean = mean(HSmeanMB(3,OsloIndex),"omitnan");
+means_HS.CL.OsloMean = mean(HSmeanMB(3,OsloIndex),"omitnan");
 
 means_HS.LLM.TromsoMean = mean(HSmeanMB(1,TromsoIndex),"omitnan"); 
 means_HS.SLM.TromsoMean = mean(HSmeanMB(2,TromsoIndex),"omitnan");
-% means_HS.CL.TromsoMean = mean(HSmeanMB(3,TromsoIndex),"omitnan");
+means_HS.CL.TromsoMean = mean(HSmeanMB(3,TromsoIndex),"omitnan");
 
 % SEM
 means_HS.LLM.OsloSEM = std(HSmeanMB(1,OsloIndex),"omitnan")/sqrt(sum(OsloIndex)); 
 means_HS.SLM.OsloSEM = std(HSmeanMB(2,OsloIndex),"omitnan")/sqrt(sum(OsloIndex)); 
-% means_HS.CL.OsloSEM  = std(HSmeanMB(3,OsloIndex),"omitnan")/sqrt(sum(OsloIndex)); 
+means_HS.CL.OsloSEM  = std(HSmeanMB(3,OsloIndex),"omitnan")/sqrt(sum(OsloIndex)); 
 
 means_HS.LLM.TromsoSEM = std(HSmeanMB(1,TromsoIndex),"omitnan")/sqrt(sum(TromsoIndex)); 
 means_HS.SLM.TromsoSEM = std(HSmeanMB(2,TromsoIndex),"omitnan")/sqrt(sum(TromsoIndex)); 
-% means_HS.CL.TromsoSEM  = std(HSmeanMB(3,TromsoIndex),"omitnan")/sqrt(sum(TromsoIndex)); 
+means_HS.CL.TromsoSEM  = std(HSmeanMB(3,TromsoIndex),"omitnan")/sqrt(sum(TromsoIndex)); 
 
 
 %%
@@ -87,6 +87,7 @@ figure, hold on
 
 ax_LLM = [0.66,0.82];
 ax_SLM = [0,2];
+ax_CL  = [0,1];
 
 tiledlayout(2,3)
 
@@ -122,12 +123,13 @@ errorbar(1,means_GoPro.CL.OsloMean,means_GoPro.CL.OsloSEM,...
     'ko')
 errorbar(2,means_NL.CL.OsloMean,means_NL.CL.OsloSEM,...
     'ko')
-% errorbar(3,means_HS.CL.OsloMean,means_HS.CL.OsloSEM,...
-%     'ko')
+errorbar(3,means_HS.CL.OsloMean,means_HS.CL.OsloSEM,...
+    'ko')
 title('CL')
 xlim([0.5,3.5])
 xticks([1,2,3])
 xticklabels({'GoPro','NL','Hyperspec'})
+ylim(ax_CL);
 
 % Tromso
 
@@ -161,11 +163,12 @@ errorbar(1,means_GoPro.CL.TromsoMean,means_GoPro.CL.TromsoSEM,...
     'ko')
 errorbar(2,means_NL.CL.TromsoMean,means_NL.CL.TromsoSEM,...
     'ko')
-% errorbar(3,means_HS.CL.TromsoMean,means_HS.LLM.OsloSEM,...
-%     'ko')
+errorbar(3,means_HS.CL.TromsoMean,means_HS.LLM.OsloSEM,...
+    'ko')
 xlim([0.5,3.5])
 xticks([1,2,3])
 xticklabels({'GoPro','NL','Hyperspec'})
+ylim(ax_CL);
 
 % TODO Do we want to (roughly) equate over season?
 
