@@ -18,12 +18,25 @@ meta.figType = "grayscale"; % "grayscale" or "colour"
 
 % Load data
 
-data = load(paths.NLProcessedData,'MBarray_concat'); % order: LLM, SLM, L+M, season, location, CL (`sussex_nanolambda/arc_plotMB.m`)
-data = data.MBarray_concat;
+%%
 
-arc_2Dhist(data,meta);
+data.GoPro = load(paths.GoProProcessedData,'fileList');
+data.GoPro = transformGoProData(data.GoPro.fileList);
 
+% data.GoPro = data.GoPro.fileList;
 
+%%
+
+data.NL = load(paths.NLProcessedData,'MBarray_concat'); % order: LLM, SLM, L+M, season, location, CL (`sussex_nanolambda/arc_plotMB.m`)
+data.NL = data.NL.MBarray_concat;
+
+%%
+
+arc_2Dhist(data.NL,meta);
+saveas(gcf,[paths.saveLocation,'2Dhist_NL.svg']);
+
+arc_2Dhist(data.GoPro,meta);
+saveas(gcf,[paths.saveLocation,'2Dhist_GoPro.svg']);
 
 
 
