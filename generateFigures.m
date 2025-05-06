@@ -10,30 +10,7 @@ meta.locationNames = {'Tromso','Oslo'};
 
 %% Data and save locations
 
-% It is expected that each user will have a different set of paths where
-% data is saved. To avoid polluting the git history with back and forth
-% edits, we use a function called `getLocalPaths` where a user's local
-% paths are saved.
-% Each user will need to populate their own.
-% An empty version is provided in the comments below.
-% `getLocalPaths` is in the `.gitignore` file so it won't be committed.
-
 paths = getLocalPaths;
-
-% function localPaths = getLocalPaths
-% 
-% localPaths.GoProRawData = "";
-% localPaths.GoProProcessedData = "";
-% 
-% localPaths.NLRawData = "";
-% localPaths.NLProcessedData = "";
-% 
-% localPaths.HSRawData = "";
-% localPaths.HSProcessedData = "";
-% 
-% localPaths.saveLocation = "";
-% 
-% end
 
 %% 2D histogram plots, split by location and season
 
