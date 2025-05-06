@@ -2,6 +2,8 @@ clear, clc, close all
 
 % figure meta
 meta.figSize = [100,100,1000,500]; % first two values are location, second two are size
+meta.fontSize.big   = 15;
+meta.fontSize.small = 10;
 meta.edges = {linspace(0.66,0.82,40) linspace(0,2,40)};
 
 % data meta

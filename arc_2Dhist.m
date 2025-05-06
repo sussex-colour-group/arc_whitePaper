@@ -20,17 +20,18 @@ else % grayscale
             axis tight square
             % text(0.76,1.4,[meta.locationNames{location+1},', ',meta.seasonNames{season}],'Color',[1,1,1])
             if season == 4
-                ylabel({['\fontsize{15}', meta.locationNames{location+1}]; ['\fontsize{10}', 'S/(L+M)']})
+                ylabel({['\fontsize{',num2str(meta.fontSize.big),'}', meta.locationNames{location+1}];...
+                    ['\fontsize{',num2str(meta.fontSize.small),'}', 'S/(L+M)']})
             else
                 yticks([]);
             end
             if location == 0
                 title(meta.seasonNames{season},...
-                    'FontSize',15,'FontWeight','normal')
+                    'FontSize',meta.fontSize.big,'FontWeight','normal')
                 xticks([]);
             end
             if location == 1
-                xlabel('L/(L+M)','FontSize',10)
+                xlabel('L/(L+M)','FontSize',meta.fontSize.small)
             end
         end
     end
