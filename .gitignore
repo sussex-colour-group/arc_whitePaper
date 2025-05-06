@@ -1,3 +1,8 @@
-getLocalPaths.m # function to set local paths, which will be different per user/OS
-**/*.svg # vector graphics files, which will change frequently - I may add them later though
-**/*.asv # autosave files
+# function to set local paths, which will be different per user/OS
+getLocalPaths.m
+
+# vector graphics files, which will change frequently - I may add them later though
+*.svg 
+
+# MATLAB autosave files
+*.asv 

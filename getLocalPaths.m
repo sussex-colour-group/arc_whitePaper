@@ -4,7 +4,7 @@ localPaths.GoProRawData = "";
 localPaths.GoProProcessedData = "";
 
 localPaths.NLRawData = "";
-localPaths.NLProcessedData = "C:\Users\cege-user\Documents\sussex_nanolambda\MATLABdataExport.mat";
+localPaths.NLProcessedData = "";
 
 localPaths.HSRawData = "";
 localPaths.HSProcessedData = "";
