@@ -1,5 +1,6 @@
-# vector graphics files, which will change frequently - I may add them later though
+# image files, which will change frequently - I may add them later though
 *.svg 
+*.png
 
 # MATLAB autosave files
 *.asv 
