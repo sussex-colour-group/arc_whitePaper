@@ -7,12 +7,12 @@ function localPaths = getLocalPaths
 % To unignore it run `git update-index --no-skip-worktree getLocalPaths.m`
 
 localPaths.GoProRawData = '';
-localPaths.GoProProcessedData = '/home/danny/LANShareDownloads/arc_GoProStats_V1.mat';
+localPaths.GoProProcessedData = '';
 
 localPaths.NLRawData = '';
-localPaths.NLProcessedData = '/home/danny/Documents/arc_whitePaper/sussex_nanolambda/MATLABdataExport.mat';
+localPaths.NLProcessedData = '';
 
 localPaths.HSRawData = '';
-localPaths.HSProcessedData = '/home/danny/Documents/arc_whitePaper/arc_ImageAnalysis/hyperspectralMBmeans.mat';
+localPaths.HSProcessedData = '';
 
 end
