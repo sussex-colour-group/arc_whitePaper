@@ -33,19 +33,17 @@ data.HS = transformHSData(data.HS.d);
 meta.figType = 'colour'; % 'grayscale' or 'colour'
 
 arc_2Dhist(data.GoPro,meta);
-set(findall(gcf,'-property','FontName'),'FontName','San Serif');
-print(gcf,'-vector','-dsvg',[saveLocation,...
-    '2Dhist_GoPro_',meta.figType,'.svg'])
+arc_pltFig('2Dhist_GoPro',meta)
 
-arc_2Dhist(data.NL,meta);
-set(findall(gcf,'-property','FontName'),'FontName','San Serif');
-print(gcf,'-vector','-dsvg',[saveLocation,...
-    '2Dhist_NL_',meta.figType,'.svg'])
-
-arc_2Dhist(data.HS,meta);
-set(findall(gcf,'-property','FontName'),'FontName','San Serif');
-print(gcf,'-vector','-dsvg',[saveLocation,...
-    '2Dhist_HS_',meta.figType,'.svg'])
+% arc_2Dhist(data.NL,meta);
+% set(findall(gcf,'-property','FontName'),'FontName','San Serif');
+% print(gcf,'-vector','-dsvg',[saveLocation,...
+%     '2Dhist_NL_',meta.figType,'.svg'])
+% 
+% arc_2Dhist(data.HS,meta);
+% set(findall(gcf,'-property','FontName'),'FontName','San Serif');
+% print(gcf,'-vector','-dsvg',[saveLocation,...
+%     '2Dhist_HS_',meta.figType,'.svg'])
 
 
 
