@@ -31,16 +31,15 @@ data.HS = transformHSData(data.HS.d);
 %% 2D histogram plots, split by location and season
 
 meta.figType = 'colour'; % 'grayscale' or 'colour'
-saveLocation = 'figs';
 
 arc_2Dhist(data.GoPro,meta);
-arc_pltFig([saveLocation,filesep,'2Dhist_GoPro'],meta)
+arc_pltFig([saveLocation,'2Dhist_GoPro'],meta)
 
 arc_2Dhist(data.NL,meta);
-arc_pltFig([saveLocation,filesep,'2Dhist_NL'],meta)
+arc_pltFig([saveLocation,'2Dhist_NL'],meta)
 
 arc_2Dhist(data.HS,meta);
-arc_pltFig([saveLocation,filesep,'2Dhist_HS'],meta)
+arc_pltFig([saveLocation,'2Dhist_HS'],meta)
 
 
 
