@@ -7,6 +7,7 @@ meta.fontSize.small = 10;
 meta.edges = {linspace(0.66,0.82,40) linspace(0,2,40)};
 meta.edgesZoomedIn = {linspace(0.68,0.705,40) linspace(1,1.3,40)};
 meta.pltCols = {'r','b'};
+meta.figType = 'colour'; % 'grayscale' or 'colour', for the 2D histograms
 
 saveLocation = ['.',filesep,'figs',filesep];
 
@@ -36,21 +37,23 @@ data.PP = transformPPData(data.PP.resultsTable);
 
 %% 2D histogram plots, split by location and season
 
-meta.figType = 'colour'; % 'grayscale' or 'colour'
-
-arc_2Dhist(data.GoPro,meta);
+arc_2Dhist_splitByLocationAndSeason(data.GoPro,meta);
 arc_saveFig([saveLocation,'2Dhist_GoPro','_',meta.figType],meta)
 
-arc_2Dhist(data.NL,meta);
+arc_2Dhist_splitByLocationAndSeason(data.NL,meta);
 arc_saveFig([saveLocation,'2Dhist_NL','_',meta.figType],meta)
 
-arc_2Dhist(data.HS,meta);
+arc_2Dhist_splitByLocationAndSeason(data.HS,meta);
 arc_saveFig([saveLocation,'2Dhist_HS','_',meta.figType],meta)
 
 %% Psychophysics vs environment
 
 ppVsEnvironment(data,meta);
 arc_saveFig([saveLocation,'PPvsE'],meta)
+
+%% White sniffer
+
+whiteSnifferFigure(data,meta);
 
 
 
