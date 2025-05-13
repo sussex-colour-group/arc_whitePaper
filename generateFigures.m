@@ -54,7 +54,6 @@ arc_saveFig([saveLocation,'PPvsE'],meta)
 %% White sniffer
 
 whiteSnifferFigure(data,meta);
-set(gcf,"InvertHardcopy","off")
 arc_saveFig([saveLocation,'whiteSniffer'],meta)
 
 

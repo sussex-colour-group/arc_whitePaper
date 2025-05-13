@@ -19,17 +19,18 @@ for location = [0,1]
     [~,yneg] = compute95pctCI(data.PP(2,data.PP(5,:) == location));
     ypos = yneg;
 
-    % errorbar(mean(data.PP(1,data.PP(5,:) == location),"omitnan"),...
-    %     mean(data.PP(2,data.PP(5,:) == location),"omitnan"),...
-    %     yneg,ypos,xneg,xpos,...
-    %     'x','Color','k','MarkerEdgeColor',meta.pltCols{location+1},...
-    %     'DisplayName',meta.locationNames{location+1})
+    errorbar(mean(data.PP(1,data.PP(5,:) == location),"omitnan"),...
+        mean(data.PP(2,data.PP(5,:) == location),"omitnan"),...
+        yneg,ypos,xneg,xpos,...
+        'x','Color','k','MarkerEdgeColor',meta.pltCols{location+1},...
+        'DisplayName',meta.locationNames{location+1})
 
     xlabel('L/(L+M)','FontSize',meta.fontSize.big)
     ylabel('S/(L+M)','FontSize',meta.fontSize.big)
 
     title(meta.locationNames{location+1},...
     'FontSize',meta.fontSize.big,'FontWeight','normal')
+
 end
 
 % add outline
@@ -48,6 +49,8 @@ for location = [0,1]
         plot(B{k}(:,2), B{k}(:,1),'Color',[1,1,1]) % TODO These values probably need offsetting ever so slightly to actually match, following through the the imresize etc. It might be good enough for visualisation purposes though.
     end
 end
+
+set(gcf,"InvertHardcopy","off") % required to make the white line white when saving (wtf matlab?)
 
 %% Visual comparison check
 
