@@ -60,11 +60,11 @@ end
 % Add cerulean line
 [~,ceruleanLine] = getCeruleanLine();
 plot(ceruleanLine(1,:),ceruleanLine(2,:),...
-    'k-.','DisplayName','Cerulean Line');
+    'k:','DisplayName','Cerulean Line');
 
 rectangle('Position',[meta.edgesZoomedIn{1,1}(1), meta.edgesZoomedIn{1,2}(1),...
-    meta.edgesZoomedIn{1,1}(end) - meta.edgesZoomedIn{1,1}(1), meta.edgesZoomedIn{1,2}(end) - meta.edgesZoomedIn{1,2}(1)])
-
+    meta.edgesZoomedIn{1,1}(end) - meta.edgesZoomedIn{1,1}(1), meta.edgesZoomedIn{1,2}(end) - meta.edgesZoomedIn{1,2}(1)],...
+    'LineStyle','--');
 
 % labels
 text(meta.edgesZoomedIn{1,1}(1), meta.edgesZoomedIn{1,2}(end) + 0.07,...
@@ -98,6 +98,7 @@ set(labelH{2,1},'Position',[0.704019759690174,0.667457153376271,0]); % Oslo Summ
 set(labelH{1,4},'Position',[0.732050211032689,0.67219608147075,0]); % Tromso Spring
 set(labelH{1,2},'Position',[0.738958718500719,0.615814506986439,0]); % Tromso Autumn
 
+A_daspect = daspect(gca);
 
 %% B
 % Plot PP again, but small
@@ -106,10 +107,15 @@ nexttile, hold on
 
 xlim([meta.edgesZoomedIn{1,1}(1),meta.edgesZoomedIn{1,1}(end)]);
 ylim([meta.edgesZoomedIn{1,2}(1),meta.edgesZoomedIn{1,2}(end)]);
-axis square
+% axis square
+daspect(A_daspect);
 xlabel('L/(L+M)','FontSize',meta.fontSize.big)
 % ylabel('S/(L+M)','FontSize',meta.fontSize.big)
-box on
+
+% hacky version of "box"
+rectangle('Position',[meta.edgesZoomedIn{1,1}(1), meta.edgesZoomedIn{1,2}(1),...
+    meta.edgesZoomedIn{1,1}(end) - meta.edgesZoomedIn{1,1}(1), meta.edgesZoomedIn{1,2}(end) - meta.edgesZoomedIn{1,2}(1)],...
+    'LineStyle','--');
 
 for location = [0,1]
     for season = 1:4
@@ -130,14 +136,14 @@ end
 % Add cerulean line
 [~,ceruleanLine] = getCeruleanLine();
 plot(ceruleanLine(1,:),ceruleanLine(2,:),...
-    'k-.','DisplayName','Cerulean Line');
+    'k:','DisplayName','Cerulean Line');
 
 clear labelH
 for location = [0,1]
     for season = 1:4
         labelH{location+1,season} = text(mean(data.PP(1,data.PP(5,:) == location & data.PP(4,:) == season),"omitnan"),...
             mean(data.PP(2,data.PP(5,:) == location & data.PP(4,:) == season),"omitnan"),...
-        [meta.locationNames{location+1}(1),': ',meta.seasonNames{season}],...
+        [meta.locationNames{location+1},' - ',meta.seasonNames{season}],...
         'Rotation',textRotation,'Color',meta.pltCols{location+1});
 
         set(labelH{location+1,season},'Position',labelH{location+1,season}.Position + [0.002,0,0])
@@ -167,10 +173,15 @@ nexttile, hold on
 
 xlim([meta.edgesZoomedIn{1,1}(1),meta.edgesZoomedIn{1,1}(end)]);
 ylim([meta.edgesZoomedIn{1,2}(1),meta.edgesZoomedIn{1,2}(end)]);
-axis square
+% axis square
+daspect(A_daspect);
 xlabel('L/(L+M)','FontSize',meta.fontSize.big)
 % ylabel('S/(L+M)','FontSize',meta.fontSize.big)
-box on
+
+% hacky version of "box"
+rectangle('Position',[meta.edgesZoomedIn{1,1}(1), meta.edgesZoomedIn{1,2}(1),...
+    meta.edgesZoomedIn{1,1}(end) - meta.edgesZoomedIn{1,1}(1), meta.edgesZoomedIn{1,2}(end) - meta.edgesZoomedIn{1,2}(1)],...
+    'LineStyle','--');
 
 for aboveBelow = [0,1]
 
@@ -189,7 +200,7 @@ end
 % Add cerulean line
 [~,ceruleanLine] = getCeruleanLine();
 plot(ceruleanLine(1,:),ceruleanLine(2,:),...
-    'k-.','DisplayName','Cerulean Line');
+    'k:','DisplayName','Cerulean Line');
 
 %labels
 clear labelH
