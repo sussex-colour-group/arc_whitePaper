@@ -201,7 +201,7 @@ for aboveBelow = [0,1]
 
 end
 
-title('Birth Location (Tromso ppts only)',...
+title('Birth Location (Tromsø ppts only)',...
     'FontSize',meta.fontSize.big,'FontWeight','normal')
 
 end
