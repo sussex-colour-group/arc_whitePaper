@@ -13,6 +13,7 @@ saveLocation = ['.',filesep,'figs',filesep];
 % data meta
 meta.seasonNames = {'Summer','Autumn','Winter','Spring'};
 meta.locationNames = {'Tromso','Oslo'};
+meta.aboveBelowNames = {'below','above'};
 
 %% Data and save locations
 
