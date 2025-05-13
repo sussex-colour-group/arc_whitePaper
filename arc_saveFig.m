@@ -1,4 +1,4 @@
-function arc_pltFig(filename,meta)
+function arc_saveFig(filename,meta)
 
 set(findall(gcf,'-property','FontName'),'FontName','San Serif');
 
@@ -6,6 +6,6 @@ set(findall(gcf,'-property','FontName'),'FontName','San Serif');
 %     [saveLocation,filename,'_',meta.figType,'.svg'])
 
 print(gcf,'-dpng',...
-    [filename,'_',meta.figType,'.png'])
+    [filename,'.png'])
 
 end
