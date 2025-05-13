@@ -22,11 +22,9 @@ ylabel('S/(L+M)','FontSize',meta.fontSize.small)
 for location = [0,1]
     for season = 1:4
 
-        xneg = std(data.GoPro(1,data.GoPro(5,:) == location & data.GoPro(4,:) == season),"omitnan")...
-            /sqrt(length(data.GoPro(1,data.GoPro(5,:) == location & data.GoPro(4,:) == season & ~isnan(data.GoPro(5,:) == location & data.GoPro(4,:) == season))));
+        [~,xneg] = compute95pctCI(data.GoPro(1,data.GoPro(5,:) == location & data.GoPro(4,:) == season));
         xpos = xneg;
-        yneg = std(data.GoPro(2,data.GoPro(5,:) == location & data.GoPro(4,:) == season),"omitnan")...
-            /sqrt(length(data.GoPro(2,data.GoPro(5,:) == location & data.GoPro(4,:) == season & ~isnan(data.GoPro(5,:) == location & data.GoPro(4,:) == season))));
+        [~,yneg] = compute95pctCI(data.GoPro(2,data.GoPro(5,:) == location & data.GoPro(4,:) == season));
         ypos = yneg;
 
         errorbar(mean(data.GoPro(1,data.GoPro(5,:) == location & data.GoPro(4,:) == season),"omitnan"),...
@@ -41,11 +39,9 @@ end
 for location = [0,1]
     for season = 1:4
 
-        xneg = std(data.PP(1,data.PP(5,:) == location & data.PP(4,:) == season),"omitnan")...
-            /sqrt(length(data.PP(1,data.PP(5,:) == location & data.PP(4,:) == season & ~isnan(data.PP(5,:) == location & data.PP(4,:) == season))));
+        [~,xneg] = compute95pctCI(data.PP(1,data.PP(5,:) == location & data.PP(4,:) == season));
         xpos = xneg;
-        yneg = std(data.PP(2,data.PP(5,:) == location & data.PP(4,:) == season),"omitnan")...
-            /sqrt(length(data.PP(2,data.PP(5,:) == location & data.PP(4,:) == season & ~isnan(data.PP(5,:) == location & data.PP(4,:) == season))));
+        [~,yneg] = compute95pctCI(data.PP(2,data.PP(5,:) == location & data.PP(4,:) == season));
         ypos = yneg;
 
         errorbar(mean(data.PP(1,data.PP(5,:) == location & data.PP(4,:) == season),"omitnan"),...
@@ -113,11 +109,9 @@ box on
 for location = [0,1]
     for season = 1:4
 
-        xneg = std(data.PP(1,data.PP(5,:) == location & data.PP(4,:) == season),"omitnan")...
-            /sqrt(length(data.PP(1,data.PP(5,:) == location & data.PP(4,:) == season & ~isnan(data.PP(5,:) == location & data.PP(4,:) == season))));
+        [~,xneg] = compute95pctCI(data.PP(1,data.PP(5,:) == location & data.PP(4,:) == season));
         xpos = xneg;
-        yneg = std(data.PP(2,data.PP(5,:) == location & data.PP(4,:) == season),"omitnan")...
-            /sqrt(length(data.PP(2,data.PP(5,:) == location & data.PP(4,:) == season & ~isnan(data.PP(5,:) == location & data.PP(4,:) == season))));
+        [~,yneg] = compute95pctCI(data.PP(2,data.PP(5,:) == location & data.PP(4,:) == season));
         ypos = yneg;
 
         errorbar(mean(data.PP(1,data.PP(5,:) == location & data.PP(4,:) == season),"omitnan"),...
@@ -170,11 +164,9 @@ box on
 
 for aboveBelow = [0,1]
 
-    xneg = std(data.PP(1,data.PP(5,:) == 0 & data.PP(7,:) == aboveBelow),"omitnan")...
-        /sqrt(length(data.PP(1,data.PP(5,:) == 0 & data.PP(7,:) == aboveBelow & ~isnan(data.PP(7,:) == aboveBelow))));
+    [~,xneg] = compute95pctCI(data.PP(1,data.PP(5,:) == 0 & data.PP(7,:) == aboveBelow));
     xpos = xneg;
-    yneg = std(data.PP(2,data.PP(5,:) == 0 & data.PP(7,:) == aboveBelow),"omitnan")...
-        /sqrt(length(data.PP(2,data.PP(5,:) == 0 & data.PP(7,:) == aboveBelow & ~isnan(data.PP(7,:) == aboveBelow))));
+    [~,yneg] = compute95pctCI(data.PP(2,data.PP(5,:) == 0 & data.PP(7,:) == aboveBelow));
     ypos = yneg;
 
     errorbar(mean(data.PP(1,data.PP(5,:) == 0 & data.PP(7,:) == aboveBelow),"omitnan"),...
