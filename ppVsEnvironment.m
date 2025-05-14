@@ -99,6 +99,8 @@ set(labelH{1,4},'Position',[0.732050211032689,0.67219608147075,0]); % Tromso Spr
 set(labelH{1,2},'Position',[0.738958718500719,0.615814506986439,0]); % Tromso Autumn
 
 A_daspect = daspect(gca);
+A_xticks = xticks();
+A_yticks = yticks();
 
 %% B
 % Plot PP again, but small
@@ -166,6 +168,9 @@ set(labelH{1,2},'Position',[0.692493286669964,1.166881326771044,0]); % Tromso Au
 title('Testing location',...
     'FontSize',meta.fontSize.big,'FontWeight','normal')
 
+xticks(A_xticks);
+yticks(A_yticks);
+
 %% C
 % Split by birth season
 
@@ -216,5 +221,8 @@ end
 
 title('Birth Location (Tromsø ppts only)',...
     'FontSize',meta.fontSize.big,'FontWeight','normal')
+
+xticks(A_xticks);
+yticks(A_yticks);
 
 end
