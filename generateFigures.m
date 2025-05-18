@@ -56,5 +56,8 @@ arc_saveFig([saveLocation,'PPvsE'],meta)
 whiteSnifferFigure(data,meta);
 arc_saveFig([saveLocation,'whiteSniffer'],meta)
 
+%% "Rainbow" figure
+
+rainbowFigure(data,meta)
 
 
