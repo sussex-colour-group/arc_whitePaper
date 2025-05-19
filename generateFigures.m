@@ -20,6 +20,8 @@ meta.aboveBelowNames = {'below','above'};
 
 paths = getLocalPaths;
 addpath(genpath(['.',filesep,'arc_ImageAnalysis',filesep,'AnalysisFunctions']));
+addpath(genpath(['.',filesep,'sussex_nanolambda']));
+
 
 %% Load and transform data
 
@@ -56,8 +58,21 @@ arc_saveFig([saveLocation,'PPvsE'],meta)
 whiteSnifferFigure(data,meta);
 arc_saveFig([saveLocation,'whiteSniffer'],meta)
 
-%% "Rainbow" figure
+%% Bright figure
 
-rainbowFigure(data,meta)
+meta.regression.range.interval = 5;
+meta.regression.range.lower = 10; % lower bound
+meta.regression.type = "global";
+
+brightFigure(data,meta)
+arc_saveFig([saveLocation,'brightFigure'],meta)
+
+%% - %% SI
+
+%% NL darknoise
+
+meta.figType = 'colour';
+NLDarkNoisePlot(data.NL,meta)
+arc_saveFig([saveLocation,'NLDarkNoise'],meta)
 
 

@@ -5,8 +5,6 @@ function rainbowFigure(data,meta)
 lowerBound = 90;
 upperBound = 100;
 
-figure("Position",meta.figSize);
-hold on
 xlim([meta.edges{1,1}(1),meta.edges{1,1}(end)])
 ylim([meta.edges{1,2}(1),meta.edges{1,2}(end)])
 legend
