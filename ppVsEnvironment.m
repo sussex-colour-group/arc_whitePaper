@@ -101,9 +101,9 @@ for location = [0,1]
     end
 end
 
-% set(labelH{2,1},'Position',[0.704019759690174,0.667457153376271,0]); % Oslo Summer
-% set(labelH{1,4},'Position',[0.732050211032689,0.67219608147075,0]); % Tromso Spring
-% set(labelH{1,2},'Position',[0.738958718500719,0.615814506986439,0]); % Tromso Autumn
+set(labelH{2,4},'Position',[0.701131954120445,0.773382145134032,0]); % Oslo Spring
+set(labelH{1,4},'Position',[0.736740234933641,0.607644592475383,0]); % Tromso Spring
+set(labelH{1,2},'Position',[0.740701788923573,0.544625123087298,0]); % Tromso Autumn
 
 A_daspect = daspect(gca);
 A_xticks = xticks();
@@ -165,10 +165,14 @@ for location = [0,1]
     end
 end
 
-% set(labelH{1,1},'Position',[0.689543835145079,1.262732455108744,0]); % Tromso Summer
-% set(labelH{1,4},'Position',[0.690951856212633,1.241722798234143,0]); % Tromso Spring
-% set(labelH{1,3},'Position',[0.692259063412531,1.209483961064295,0]); % Tromso Winter
-% set(labelH{1,2},'Position',[0.692493286669964,1.166881326771044,0]); % Tromso Autumn
+set(labelH{1,1},'Position',[0.689543835145079,1.262732455108744,0]); % Tromso Summer
+set(labelH{1,4},'Position',[0.690951856212633,1.221722798234143,0]); % Tromso Spring
+set(labelH{1,3},'Position',[0.692259063412531,1.189483961064295,0]); % Tromso Winter
+set(labelH{1,2},'Position',[0.692493286669964,1.166881326771044,0]); % Tromso Autumn
+
+
+set(labelH{2,1},'Position',[0.695297704491656,1.036165614071213,0]); % Oslo Summer
+set(labelH{2,2},'Position',[0.691660357184412,1.101736872871365,0]); % Oslo Autumn
 
 % set(labelH{2,2},'Position',[0.695510754426397,1.119069962572727,0]); % Oslo Autumn
 % set(labelH{2,1},'Position',[0.700948391228591,1.071487107703185,0]); % Oslo Summer
