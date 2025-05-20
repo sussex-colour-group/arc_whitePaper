@@ -5,7 +5,6 @@ meta.figSize = [100,100,1000,500]; % first two values are location, second two a
 meta.fontSize.big   = 15;
 meta.fontSize.small = 10;
 meta.edges = {linspace(0.66,0.82,40) linspace(0,2,40)};
-meta.edgesZoomedIn = {linspace(0.67,0.715,40) linspace(1,1.3,40)};
 meta.pltCols = {'r','b'};
 meta.figType = 'colour'; % 'grayscale' or 'colour', for the 2D histograms
 
