@@ -47,6 +47,9 @@ arc_saveFig([saveLocation,'2Dhist_NL','_',meta.figType],meta)
 arc_2Dhist_splitByLocationAndSeason(data.HS,meta);
 arc_saveFig([saveLocation,'2Dhist_HS','_',meta.figType],meta)
 
+arc_2Dhist_splitByLocation(data,meta);
+arc_saveFig([saveLocation,'2Dhist_GoProVsPP','_',meta.figType],meta)
+
 %% Psychophysics vs environment
 
 ppVsEnvironment(data,meta);
