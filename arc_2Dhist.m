@@ -1,4 +1,4 @@
-function arc_2Dhist(x,y,meta)
+function arc_2Dhist(x,y,meta,specLocus)
 
 if strcmp(meta.figType, "colour") % use hues per bin
 
@@ -37,5 +37,33 @@ end
 % colorbar
 axis tight square
 set(gca,'TickDir','out')
+
+if exist("specLocus","var") && specLocus == true
+
+    try
+        % Following code inherited from:
+        % arc_PsychophysicsAnalysis/whiteSetting.m
+        coneFundamentals = SelectConeFundamentals('StockmanMacleodJohnson'); % 10-degree % From `arc_config.m`
+        a(1,:,:) =  coneFundamentals; % hack because LMSToMacB needs a 3D matrix
+        [LLMmatrix,SLMmatrix] = LMSToMacB(a);
+
+        % Following code inherited from: 
+        % PsychToolbox/PsychColorimetric/DrawChromaticity.m
+        load T_xyz1931 T_xyz1931  % CMF: 1931 2deg
+        sRGB_SL = XYZToSRGBPrimary(T_xyz1931); % sRGB Spectral Locus
+        sRGB_SL(sRGB_SL>1) = 1; %Threshold values to between 0 and 1
+        sRGB_SL(sRGB_SL<0) = 0;
+        sRGB_SL = sRGB_SL(:,21:421); % match wavelength sampling limits
+
+        for i = 1:401
+            plot(LLMmatrix(i),SLMmatrix(i),...
+                '-o','MarkerFaceColor',sRGB_SL(:,i),'MarkerEdgeColor',sRGB_SL(:,i),...
+                'MarkerSize',3);
+        end
+
+    catch
+        warning('Plotting the spectral locus did not work - perhaps you do not have PsychToolbox installed?')
+    end
+end
 
 end

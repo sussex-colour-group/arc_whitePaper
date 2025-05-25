@@ -21,7 +21,6 @@ paths = getLocalPaths;
 addpath(genpath(['.',filesep,'arc_ImageAnalysis',filesep,'AnalysisFunctions']));
 addpath(genpath(['.',filesep,'sussex_nanolambda']));
 
-
 %% Load and transform data
 
 data.GoPro = load(paths.GoProProcessedData,'fileList');

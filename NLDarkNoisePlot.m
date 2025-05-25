@@ -37,31 +37,34 @@ ylabel('Percentile','FontSize',meta.fontSize.small)
 
 %% 2D histograms
 
-meta.edges = {linspace(0.55,0.9,40) linspace(0,8,40)};
+meta.edges = {linspace(0.55,0.9,40) linspace(0,4,40)};
 
-nexttile
-hold on
-arc_2Dhist(data(1,:),...
-        data(2,:),...
-        meta);
-daspect('auto')
-xlabel('L/(L+M)','FontSize',meta.fontSize.small)
-ylabel('S/(L+M)','FontSize',meta.fontSize.small)
+datasubset{1} = data;
+datasubset{2} = data(:,Inorm < 10);
+datasubset{3} = data(:,Inorm >= 10);
 
-nexttile
-hold on
-arc_2Dhist(data(1,Inorm < 10),...
-        data(2,Inorm < 10),...
-        meta);
-daspect('auto')
-xlabel('L/(L+M)','FontSize',meta.fontSize.small)
+for i = 1:3
 
-nexttile
-hold on
-arc_2Dhist(data(1,Inorm >= 10),...
-        data(2,Inorm >= 10),...
-        meta);
-daspect('auto')
-xlabel('L/(L+M)','FontSize',meta.fontSize.small)
+    nexttile
+    hold on
+
+    arc_2Dhist(datasubset{i}(1,:),...
+        datasubset{i}(2,:),...
+        meta,true);
+    pbaspect auto
+    xlabel('L/(L+M)','FontSize',meta.fontSize.small)
+    ylabel('S/(L+M)','FontSize',meta.fontSize.small)
+    xlim([min(meta.edges{1}),max(meta.edges{1})]);
+    ylim([min(meta.edges{2}),max(meta.edges{2})]);
+
+    scatter(mean(datasubset{i}(1,:),"omitnan"),...
+        mean(datasubset{i}(2,:),"omitnan"),...
+        'o','Color','k','MarkerEdgeColor',[1,1,1],'MarkerFaceColor',[0.5,0.5,0.5])
+
+    text(mean(datasubset{i}(1,:),"omitnan") + 0.02,...
+        mean(datasubset{i}(2,:),"omitnan"),...
+        [num2str(mean(datasubset{i}(1,:),"omitnan"),'%.3f'),', ',num2str(mean(datasubset{i}(2,:),"omitnan"),'%.3f')],...
+        'Color','w');
+end
 
 end
