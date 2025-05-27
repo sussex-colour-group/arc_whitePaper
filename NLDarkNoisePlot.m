@@ -1,11 +1,11 @@
 function NLDarkNoisePlot(data,meta)
 
+Inorm = computeInorm(data);
+
+%%
+
 figure("Position",meta.figSize);
 tiledlayout(2,3)
-
-[~,I] = sort(data(3,:));
-[~,I2] = sort(I);
-Inorm = (I2-1)/(size(I2,2)-1)*100;
 
 %%
 
