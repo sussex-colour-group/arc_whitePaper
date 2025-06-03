@@ -3,7 +3,7 @@ function compareMeasurementModalities(data,meta,SW)
 % means and CI for Go Pro, Hyperspectral and Nanolambda on one figure to visualise equivalence
 
 data_restructured{1} = data.GoPro;
-data_restructured{2} = data.NL_denoised;
+data_restructured{2} = data.NL_denoised; % Note: this uses the version of the NL data with the dark noise reduction applies
 data_restructured{3} = data.HS;
 
 lims(:,1) = [0.66,0.82];

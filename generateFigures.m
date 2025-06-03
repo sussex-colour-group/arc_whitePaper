@@ -76,7 +76,7 @@ arc_saveFig([saveLocation,'brightFigure'],meta)
 
 SummerWinterOnly = false;
 compareMeasurementModalities(data,meta,SummerWinterOnly)
-% arc_saveFig([saveLocation,'compareMeasurementModalities'],meta) % which one(s) should we save?
+% arc_saveFig([saveLocation,'compareMeasurementModalities'],meta)
 
 %% NL darknoise
 
