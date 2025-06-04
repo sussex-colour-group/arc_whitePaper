@@ -10,7 +10,7 @@ lims(:,1) = [0.66,0.82];
 lims(:,2) = [0,2];
 lims(:,6) = [0,1];
 
-figure, hold on
+figure("Position",meta.figSize); hold on
 tiledlayout(2,3)
 
 for location = [0,1]
@@ -19,13 +19,13 @@ for location = [0,1]
 
         for i = 1:3
             if SW
-                SWindex = data_restructured{i}(4,:) == 1 | data_restructured{i}(4,:) == 3; % index of summer or winter measurements
+                inclusionIndex = data_restructured{i}(4,:) == 1 | data_restructured{i}(4,:) == 3; % index of summer or winter measurements
             else
-                SWindex = true(size(data_restructured{i}(4,:)));
+                inclusionIndex = true(size(data_restructured{i}(4,:)));
             end
-            [~,err] = compute95pctCI(data_restructured{i}(param,data_restructured{i}(5,:) == location & SWindex));
+            [~,err] = compute95pctCI(data_restructured{i}(param,data_restructured{i}(5,:) == location & inclusionIndex));
 
-            errorbar(i,mean(data_restructured{i}(param,data_restructured{i}(5,:) == location & SWindex),"omitnan"),...
+            errorbar(i,mean(data_restructured{i}(param,data_restructured{i}(5,:) == location & inclusionIndex),"omitnan"),...
                 err,...
                 'x','Color','k','MarkerEdgeColor',meta.pltCols{location+1},...
                 'DisplayName',[meta.locationNames{location+1}])
