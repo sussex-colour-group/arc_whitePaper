@@ -53,7 +53,10 @@ arc_saveFig([saveLocation,'2Dhist_GoProVsPP','_',meta.figType],meta)
 
 %% Psychophysics vs environment
 
-ppVsEnvironment(data,meta);
+meta.envLabel = 'Head Cam';
+meta.tweakLabels = true;
+
+ppVsEnvironment(data.GoPro,data.PP,meta);
 arc_saveFig([saveLocation,'PPvsE'],meta)
 
 %% White sniffer
@@ -83,5 +86,18 @@ arc_saveFig([saveLocation,'compareMeasurementModalities'],meta)
 meta.figType = 'colour';
 NLDarkNoisePlot(data.NL,meta);
 arc_saveFig([saveLocation,'NLDarkNoise'],meta)
+
+%% PP vs env but for HS instead of GoPro
+
+meta.tweakLabels = false;
+
+meta.envLabel = 'Hyperspectral';
+ppVsEnvironment(data.HS,data.PP,meta);
+arc_saveFig([saveLocation,'PPvsE_HS'],meta)
+
+%
+meta.envLabel = 'NanoLambda';
+ppVsEnvironment(data.NL_denoised,data.PP,meta);
+arc_saveFig([saveLocation,'PPvsE_NL'],meta)
 
 
