@@ -37,7 +37,7 @@ data.HS = transformHSData(data.HS.d);
 data.PP = load(paths.PPProcessedData);
 [data.PP,data.pptCodes] = transformPPData(data.PP.resultsTable);
 
-excludeRecentTravellers = true;
+excludeRecentTravellers = false;
 pptsToExclude = getExclusions(excludeRecentTravellers);
 [data.PP,data.pptCodes] = excludePpts(data.PP,data.pptCodes,pptsToExclude);
 
