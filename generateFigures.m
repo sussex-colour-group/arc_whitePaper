@@ -35,7 +35,11 @@ data.HS = load(paths.HSProcessedData,'d');
 data.HS = transformHSData(data.HS.d);
 
 data.PP = load(paths.PPProcessedData);
-data.PP = transformPPData(data.PP.resultsTable);
+[data.PP,data.pptCodes] = transformPPData(data.PP.resultsTable);
+
+excludeRecentTravellers = false;
+pptsToExclude = getExclusions(excludeRecentTravellers);
+[data.PP,data.pptCodes] = excludePpts(data.PP,data.pptCodes,pptsToExclude);
 
 %% 2D histogram plots, split by location and season
 
