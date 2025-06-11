@@ -44,16 +44,16 @@ pptsToExclude = getExclusions(excludeRecentTravellers);
 %% 2D histogram plots, split by location and season
 
 arc_2Dhist_splitByLocationAndSeason(data.GoPro,meta);
-arc_saveFig([saveLocation,'2Dhist_GoPro','_',meta.figType],meta)
+arc_saveFig([saveLocation,'1_2Dhist_GoPro','_',meta.figType],meta)
 
 arc_2Dhist_splitByLocationAndSeason(data.NL_denoised,meta);
-arc_saveFig([saveLocation,'2Dhist_NL','_',meta.figType],meta)
+arc_saveFig([saveLocation,'SI1_2Dhist_NL','_',meta.figType],meta)
 
 arc_2Dhist_splitByLocationAndSeason(data.HS,meta);
-arc_saveFig([saveLocation,'2Dhist_HS','_',meta.figType],meta)
+arc_saveFig([saveLocation,'SI1_2Dhist_HS','_',meta.figType],meta)
 
-arc_2Dhist_splitByLocation(data,meta);
-arc_saveFig([saveLocation,'2Dhist_GoProVsPP','_',meta.figType],meta)
+% arc_2Dhist_splitByLocation(data,meta);
+% arc_saveFig([saveLocation,'2Dhist_GoProVsPP','_',meta.figType],meta)
 
 %% Psychophysics vs environment
 
@@ -61,12 +61,12 @@ meta.envLabel = 'Head Cam';
 meta.tweakLabels = true;
 
 ppVsEnvironment(data.GoPro,data.PP,meta);
-arc_saveFig([saveLocation,'PPvsE'],meta)
+arc_saveFig([saveLocation,'2_PPvsE'],meta)
 
 %% White sniffer
 
 whiteSnifferFigure(data,meta);
-arc_saveFig([saveLocation,'whiteSniffer'],meta)
+arc_saveFig([saveLocation,'3_whiteSniffer'],meta)
 
 %% Bright figure
 
@@ -75,7 +75,7 @@ meta.regression.range.lower = 10; % lower bound
 meta.regression.type = "global";
 
 brightFigure(data,meta)
-arc_saveFig([saveLocation,'brightFigure'],meta)
+arc_saveFig([saveLocation,'4_brightFigure'],meta)
 
 %% - %% SI
 
@@ -83,13 +83,13 @@ arc_saveFig([saveLocation,'brightFigure'],meta)
 
 SummerWinterOnly = true;
 compareMeasurementModalities(data,meta,SummerWinterOnly)
-arc_saveFig([saveLocation,'compareMeasurementModalities'],meta)
+arc_saveFig([saveLocation,'SI2_compareMeasurementModalities'],meta)
 
 %% NL darknoise
 
 meta.figType = 'colour';
 NLDarkNoisePlot(data.NL,meta);
-arc_saveFig([saveLocation,'NLDarkNoise'],meta)
+arc_saveFig([saveLocation,'SI3_NLDarkNoise'],meta)
 
 %% PP vs env but for HS instead of GoPro
 
