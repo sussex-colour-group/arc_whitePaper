@@ -37,7 +37,7 @@ data.HS = transformHSData(data.HS.d);
 data.PP = load(paths.PPProcessedData);
 [data.PP,data.pptCodes] = transformPPData(data.PP.resultsTable);
 
-excludeRecentTravellers = false;
+excludeRecentTravellers = true;
 pptsToExclude = getExclusions(excludeRecentTravellers);
 [data.PP,data.pptCodes] = excludePpts(data.PP,data.pptCodes,pptsToExclude);
 
@@ -45,15 +45,6 @@ pptsToExclude = getExclusions(excludeRecentTravellers);
 
 arc_2Dhist_splitByLocationAndSeason(data.GoPro,meta);
 arc_saveFig([saveLocation,'1_2Dhist_GoPro','_',meta.figType],meta)
-
-arc_2Dhist_splitByLocationAndSeason(data.NL_denoised,meta);
-arc_saveFig([saveLocation,'SI1_2Dhist_NL','_',meta.figType],meta)
-
-arc_2Dhist_splitByLocationAndSeason(data.HS,meta);
-arc_saveFig([saveLocation,'SI1_2Dhist_HS','_',meta.figType],meta)
-
-% arc_2Dhist_splitByLocation(data,meta);
-% arc_saveFig([saveLocation,'2Dhist_GoProVsPP','_',meta.figType],meta)
 
 %% Psychophysics vs environment
 
@@ -79,17 +70,16 @@ arc_saveFig([saveLocation,'4_brightFigure'],meta)
 
 %% - %% SI
 
-%% Comparison across modalities
+%% 2D histogram plots, split by location and season
 
-SummerWinterOnly = true;
-compareMeasurementModalities(data,meta,SummerWinterOnly)
-arc_saveFig([saveLocation,'SI2_compareMeasurementModalities'],meta)
+arc_2Dhist_splitByLocationAndSeason(data.NL_denoised,meta);
+arc_saveFig([saveLocation,'SI1_2Dhist_NL','_',meta.figType],meta)
 
-%% NL darknoise
+arc_2Dhist_splitByLocationAndSeason(data.HS,meta);
+arc_saveFig([saveLocation,'SI1_2Dhist_HS','_',meta.figType],meta)
 
-meta.figType = 'colour';
-NLDarkNoisePlot(data.NL,meta);
-arc_saveFig([saveLocation,'SI3_NLDarkNoise'],meta)
+% arc_2Dhist_splitByLocation(data,meta);
+% arc_saveFig([saveLocation,'2Dhist_GoProVsPP','_',meta.figType],meta)
 
 %% PP vs env but for HS instead of GoPro
 
@@ -97,11 +87,25 @@ meta.tweakLabels = false;
 
 meta.envLabel = 'Hyperspectral';
 ppVsEnvironment(data.HS,data.PP,meta);
-arc_saveFig([saveLocation,'PPvsE_HS'],meta)
+arc_saveFig([saveLocation,'SI2_PPvsE_HS'],meta)
 
 %
 meta.envLabel = 'NanoLambda';
 ppVsEnvironment(data.NL_denoised,data.PP,meta);
-arc_saveFig([saveLocation,'PPvsE_NL'],meta)
+arc_saveFig([saveLocation,'SI2_PPvsE_NL'],meta)
+
+%% Comparison across modalities
+
+SummerWinterOnly = true;
+compareMeasurementModalities(data,meta,SummerWinterOnly)
+arc_saveFig([saveLocation,'SI3_compareMeasurementModalities'],meta)
+
+%% NL darknoise
+
+meta.figType = 'colour';
+NLDarkNoisePlot(data.NL,meta);
+arc_saveFig([saveLocation,'SI4_NLDarkNoise'],meta)
+
+
 
 
