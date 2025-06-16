@@ -16,25 +16,36 @@ clc, clear, close all
 
 %% define paths
 
-dataDir = ['..',filesep,'..',filesep,'raw',filesep,'hyperspectral'];
-saveDir = ['..',filesep,'..',filesep,'processed',filesep,'hyperspectral'];
+repoHomeDir = ['..',filesep,'..',filesep,'..',filesep];
+addpath(repoHomeDir);
+addpath([repoHomeDir,'imageanalysis',filesep]);
+addpath([repoHomeDir,'hyperspectralAnalysis',filesep]);
 
-% add the nanolambda scripts to the path
-addpath(['..',filesep,'..',filesep,'..',filesep,'imageanalysis',filesep]);
-addpath(['..',filesep,'..',filesep,'..',filesep,'hyperspectralAnalysis',filesep]);
+localPaths = getLocalPaths();
 
 %% Preprocess data
 
-% prompt = ['Are you sure you want to run this chunk?', newline...
-%     'It requires quite a lot of time and computational resources ', newline];
-% response = input(prompt,"s");
-% 
-% if strcmp(response,'y')
+prompt = ['Are you sure you want to run this chunk?', newline...
+    'It requires quite a lot of time and computational resources ', newline];
+response = input(prompt,"s");
 
-inputDir = '/home/danny/cisc2/projects/colour_arctic/data/Norway Hyperspectral/Hyperspectral';
-outputDir = '/home/danny/cisc1/projects/colour_arctic/hyperspectralOutputs';
+if strcmp(response,'y')
+    
+    AnalyseHyperspectral(localPaths.HSRawData,localPaths.HSLMSImages)
 
-AnalyseHyperspectral(inputDir,outputDir)
+end
 
-% end
+%% Compute summary stats
+
+% TODO Replace absolute paths
+load("/home/danny/cisc2/projects/colour_arctic/code/arc_PsychophysicsAnalysis/whiteResultsTable.mat",'resultsTable'); %psychophysicsData
+
+stdLLM = std([resultsTable.MeanLLM],"omitnan");
+stdSLM = std([resultsTable.MeanSLM],"omitnan");
+
+CLfactors = [stdLLM,stdSLM];
+
+computeHS_MB_means(localPaths.HSLMSImages,localPaths.HSProcessedData,CLfactors)
+
+
 
