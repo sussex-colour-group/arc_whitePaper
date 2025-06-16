@@ -19,7 +19,7 @@ meta.aboveBelowNames = {'below','above'};
 %% Data and save locations
 
 paths = getLocalPaths;
-addpath(genpath(['.',filesep,'arc_ImageAnalysis',filesep,'AnalysisFunctions']));
+addpath(genpath(['.',filesep,'imageanalysis']));
 addpath(genpath(['.',filesep,'sussex_nanolambda']));
 
 %% Load and transform data
@@ -35,11 +35,10 @@ data.HS = load(paths.HSProcessedData,'d');
 data.HS = transformHSData(data.HS.d);
 
 data.PP = load(paths.PPProcessedData);
-[data.PP,data.pptCodes] = transformPPData(data.PP.resultsTable);
-
-excludeRecentTravellers = false;
-pptsToExclude = getExclusions(excludeRecentTravellers);
-[data.PP,data.pptCodes] = excludePpts(data.PP,data.pptCodes,pptsToExclude);
+[data.PP,data.PP_pptCodes] = transformPPData(data.PP.resultsTable);
+data.PP_excludeRecentTravellers = false;
+data.PP_pptsToExclude = getExclusions(data.PP_excludeRecentTravellers);
+[data.PP,data.PP_pptCodes] = excludePpts(data.PP,data.PP_pptCodes,data.PP_pptsToExclude);
 
 %% 2D histogram plots, split by location and season
 
