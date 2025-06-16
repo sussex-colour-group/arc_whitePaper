@@ -11,8 +11,9 @@ clc, clear, close all
 
 % - Download data
 % - Unzip it
-% - Place it in the data/raw/hyperspectral directory 
-% (or wherever you like if you're happy to modify the next line)
+% - Place it in the data/raw/hyperspectral directory (or elsewhere)
+% - Modify `getLocalPaths.m` stating where you put it 
+% (and where you want the processed files to be saved)
 
 %% define paths
 
