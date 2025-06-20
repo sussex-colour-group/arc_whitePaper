@@ -34,7 +34,7 @@ for location = [0,1]
 end
 
 % add outline
-threshVal = 85; % warning: chosen by eye
+threshVal = 0; % 0 includes all the data, 85 seems like an OK value for excluding noise (excludes points in the histmatrix that are below the 85% percentile value)
 for location = [0,1]
     histmatrix = histcounts2(data.GoPro(1,data.GoPro(5,:) == location),data.GoPro(2,data.GoPro(5,:) == location),...
         'XBinEdges',meta.edges{1,1},'YBinEdges',meta.edges{1,2})';
@@ -67,5 +67,9 @@ set(gcf,"InvertHardcopy","off") % required to make the white line white when sav
 %         meta);  
 % 
 % end
+
+%% white sniffer fig
+
+% paths.GoProProcessedData_whiteSniffer
 
 end
