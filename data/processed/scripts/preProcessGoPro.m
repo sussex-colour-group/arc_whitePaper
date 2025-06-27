@@ -22,6 +22,9 @@ fileList = rmfield(fileList,'FM_T');
 fileList = rmfield(fileList,'MondStats');
 fileList = rmfield(fileList,'DiscrStats');
 
+if ~exist(['..',filesep,'GoPro'],"dir")
+    mkdir(['..',filesep,'GoPro'])
+end
 writetable(struct2table(fileList),['..',filesep,'GoPro',filesep,'GoPro.csv']);
 
 %% Convert that csv into a matrix that is easier for later plotting

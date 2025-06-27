@@ -129,5 +129,7 @@ for i = 1:size(resultsTable,2)
 end
 
 %%
-
+if ~exist(fileparts(localPaths.PPProcessedData),"dir")
+    mkdir(fileparts(localPaths.PPProcessedData))
+end
 save(localPaths.PPProcessedData,'resultsTable');

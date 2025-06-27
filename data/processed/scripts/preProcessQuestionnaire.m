@@ -33,6 +33,9 @@ columns = {'pcode',...
     'Above or below arctic circle',...
 	'which month is your birthday?'};
 
+if ~exist(outputDir,"dir")
+    mkdir(outputDir)
+end
 jm_questionnaire_puller(paths,[outputDir,outputFn,'.csv'],columns)
 
 %% % for generating a "full" csv
