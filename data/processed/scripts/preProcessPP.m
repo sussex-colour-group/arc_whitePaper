@@ -28,8 +28,6 @@ dataDir = localPaths.PPRawData;
 
 filesinfolder = dir([dataDir,filesep,'arc_WhiteSettings*.mat']);
 
-dataForCLConversion = load(localPaths.PPProcessedData,'resultsTable'); % careful this doesn't get circular - for some changes we might need to run this script twice
-
 for i = 1:length(filesinfolder)
     try
         fileName = filesinfolder(i).name;
@@ -44,14 +42,6 @@ for i = 1:length(filesinfolder)
 
         resultsTable(i).MeanLLM = mean(settingsLLM);
         resultsTable(i).MeanSLM = mean(settingsSLM);
-
-        if isnan(resultsTable(i).MeanLLM) % TODO The more robust way of doing this would be to edit MacBtoCL to return NaN when given NaN (it currently returns 0)
-            resultsTable(i).CL = NaN;
-        else
-            resultsTable(i).CL = MacBtoCL([resultsTable(i).MeanLLM;resultsTable(i).MeanSLM],...
-                [std([dataForCLConversion.resultsTable.MeanLLM],"omitnan"),...
-                 std([dataForCLConversion.resultsTable.MeanSLM],"omitnan")]);
-        end
 
         resultsTable(i).stdLLM = std(settingsLLM);
         resultsTable(i).stdSLM = std(settingsSLM);
@@ -76,13 +66,28 @@ for i = 1:length(filesinfolder)
 
         resultsTable(i).MeanLLM = NaN;
         resultsTable(i).MeanSLM = NaN;
-        resultsTable(i).CL = NaN;
         resultsTable(i).stdLLM = NaN;
         resultsTable(i).stdSLM = NaN;        
         resultsTable(i).nSettings = NaN;
         resultsTable(i).LogAxisRatio = NaN;
         resultsTable(i).AxisRatioNormed = NaN;
         resultsTable(i).EllipseAngleUnnormed = NaN;
+    end
+end
+
+% this needs to be done afterwards because it equates the std in both axes,
+% which can only be computed once we have all the data
+for i = 1:length(filesinfolder)
+    try
+        if isnan(resultsTable(i).MeanLLM) % TODO The more robust way of doing this would be to edit MacBtoCL to return NaN when given NaN (it currently returns 0)
+            resultsTable(i).CL = NaN;
+        else
+            resultsTable(i).CL = MacBtoCL([resultsTable(i).MeanLLM;resultsTable(i).MeanSLM],...
+                [std([resultsTable.MeanLLM],"omitnan"),...
+                std([resultsTable.MeanSLM],"omitnan")]);
+        end
+    catch
+        resultsTable(i).CL = NaN;
     end
 end
 
