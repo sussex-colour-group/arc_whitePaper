@@ -1,0 +1,10 @@
+A,B (top):
+MB chromaticity plots comparing the distribution of environmental (headcam) data (white outline), with the distribution of psychophysics (white setting) data (coloured 2D histogram). 
+Means with 95% CI are shown for the psychophysics data (red cross for Tromsø, blue cross for Oslo).
+
+C,D (bottom):
+The results of the "white sniffer" analysis (Tromso, left. Oslo, right).
+Images chosen for having the highest number of pixels matching the psychophysically-defined local white chromaticity.
+Red blocking has been applied to areas which are of chromaticities outside of what is defined as local white, to enable a visual analysis of which areas of scenes might be informing the local definition of "white".
+
+White sniffer methods notes: https://github.com/sussex-colour-group/arc_notebook/blob/main/pages/white%20paper___methods%20section___GoPro___white%20sniffer.md

@@ -1,0 +1,5 @@
+A) The relationship between luminance and nanolambda-psychophysics difference
+Nanolambda measurements of environments at higher luminances tend to be closer in chromaticity to the psychophysically defined white point.
+Nanolambda data was sorted by percentile luminance (higher luminances = higher percentiles), and the relationship between this value and the chromaticity difference between the nanolambda data at that luminance and the psychophysically defined white point (luminance-indifferent - we only tested at one luminance) is investigated.
+
+B) The top 10% of nanolambda data from each season (circles), compared to the local and seasonal psychophysically defined white points.

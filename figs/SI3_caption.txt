@@ -1,0 +1,3 @@
+Comparison between measurement modalities: GoPro, nanolambda, and hyperspectral.
+Means and 95% CI, for L/(L+M), S/(L+M), and CL.
+

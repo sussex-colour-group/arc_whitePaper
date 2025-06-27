@@ -1,0 +1,1 @@
+As per F2, for hyperspectral and nanolambda data.
