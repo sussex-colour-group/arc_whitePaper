@@ -2,24 +2,24 @@ clear, clc, close all
 
 paths = getLocalPaths;
 
-data.PP = load(paths.PPProcessedData);
+data.PP = readtable(paths.PPProcessedData);
 
 %%
 figure, hold on
-histogram([data.PP.resultsTable.stdSLM])
-xline(mean([data.PP.resultsTable.stdSLM],"omitnan"),'k','LineWidth',2);
+histogram([data.PP.stdSLM])
+xline(mean([data.PP.stdSLM],"omitnan"),'k','LineWidth',2);
 for nSTD = 1:3
-    xline(mean([data.PP.resultsTable.stdSLM],"omitnan")...
-        + nSTD * std([data.PP.resultsTable.stdSLM],"omitnan"),'r','LineWidth',2);
+    xline(mean([data.PP.stdSLM],"omitnan")...
+        + nSTD * std([data.PP.stdSLM],"omitnan"),'r','LineWidth',2);
 end
 xlabel('SLM std')
 
 figure, hold on
-histogram([data.PP.resultsTable.stdLLM])
-xline(mean([data.PP.resultsTable.stdLLM],"omitnan"),'k','LineWidth',2);
+histogram([data.PP.stdLLM])
+xline(mean([data.PP.stdLLM],"omitnan"),'k','LineWidth',2);
 for nSTD = 1:3
-    xline(mean([data.PP.resultsTable.stdLLM],"omitnan")...
-        + nSTD * std([data.PP.resultsTable.stdLLM],"omitnan"),'r','LineWidth',2);
+    xline(mean([data.PP.stdLLM],"omitnan")...
+        + nSTD * std([data.PP.stdLLM],"omitnan"),'r','LineWidth',2);
 end
 xlabel('LLM std')
 
@@ -27,21 +27,21 @@ xlabel('LLM std')
 
 figure, hold on
 
-scatter([data.PP.resultsTable.stdLLM],[data.PP.resultsTable.stdSLM])
+scatter([data.PP.stdLLM],[data.PP.stdSLM])
 xlabel('SLM std')
 ylabel('LLM std')
 
 nSTD = 3;
-xline(mean([data.PP.resultsTable.stdLLM],"omitnan") +...
-    nSTD * std([data.PP.resultsTable.stdLLM],"omitnan"),'r','LineWidth',2);
-yline(mean([data.PP.resultsTable.stdSLM],"omitnan") + ...
-    nSTD * std([data.PP.resultsTable.stdSLM],"omitnan"),'r','LineWidth',2);
+xline(mean([data.PP.stdLLM],"omitnan") +...
+    nSTD * std([data.PP.stdLLM],"omitnan"),'r','LineWidth',2);
+yline(mean([data.PP.stdSLM],"omitnan") + ...
+    nSTD * std([data.PP.stdSLM],"omitnan"),'r','LineWidth',2);
 
 %% Split by location
 
-dataLLM = [data.PP.resultsTable.stdLLM];
-dataSLM = [data.PP.resultsTable.stdSLM];
-tromsoInd = ~[data.PP.resultsTable.testLocation];
+dataLLM = [data.PP.stdLLM];
+dataSLM = [data.PP.stdSLM];
+tromsoInd = ~[data.PP.testLocation];
 
 nSTD = 3;
 
@@ -65,11 +65,11 @@ yline(mean(dataSLM(~tromsoInd),"omitnan") + ...
     nSTD * std(dataSLM(~tromsoInd),"omitnan"),'r:','LineWidth',2,...
     'HandleVisibility','off');
 
-xline(mean([data.PP.resultsTable.stdLLM],"omitnan") +...
-    nSTD * std([data.PP.resultsTable.stdLLM],"omitnan"),'k','LineWidth',2,...
+xline(mean([data.PP.stdLLM],"omitnan") +...
+    nSTD * std([data.PP.stdLLM],"omitnan"),'k','LineWidth',2,...
     'DisplayName','3std all');
-yline(mean([data.PP.resultsTable.stdSLM],"omitnan") + ...
-    nSTD * std([data.PP.resultsTable.stdSLM],"omitnan"),'k','LineWidth',2,...
+yline(mean([data.PP.stdSLM],"omitnan") + ...
+    nSTD * std([data.PP.stdSLM],"omitnan"),'k','LineWidth',2,...
     'HandleVisibility','off');
 
 xlabel('LLM std')
@@ -80,13 +80,13 @@ legend('Location','northwestoutside')
 %% which ppt is above 3SD in both SLM and LLM
 
 nSTD = 3;
-LLM_3STD = mean([data.PP.resultsTable.stdLLM],"omitnan") + ...
-    nSTD * std([data.PP.resultsTable.stdLLM],"omitnan");
+LLM_3STD = mean([data.PP.stdLLM],"omitnan") + ...
+    nSTD * std([data.PP.stdLLM],"omitnan");
 
-SLM_3STD = mean([data.PP.resultsTable.stdSLM],"omitnan") + ...
-    nSTD * std([data.PP.resultsTable.stdSLM],"omitnan");
+SLM_3STD = mean([data.PP.stdSLM],"omitnan") + ...
+    nSTD * std([data.PP.stdSLM],"omitnan");
 
-data.PP.resultsTable(find([data.PP.resultsTable.stdLLM]>LLM_3STD & [data.PP.resultsTable.stdSLM]>SLM_3STD)).ppt
+data.PP.ppt(find([data.PP.stdLLM]>LLM_3STD & [data.PP.stdSLM]>SLM_3STD))
 
 % '036t'
 
@@ -129,8 +129,8 @@ end
 
 %%
 
-sum(isnan([data.PP.resultsTable.stdLLM]))
-data.PP.resultsTable(find(isnan([data.PP.resultsTable.stdLLM]))).ppt
+sum(isnan([data.PP.stdLLM]))
+data.PP.ppt(find(isnan([data.PP.stdLLM])))
 
 % '057t'
 % '160t'
