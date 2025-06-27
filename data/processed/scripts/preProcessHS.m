@@ -48,5 +48,16 @@ CLfactors = [stdLLM,stdSLM];
 
 computeHS_MB_means(localPaths.HSLMSImages,localPaths.HSProcessedData,CLfactors)
 
+%% Remove duplicates from HS data
+
+d = dir(localPaths.HSImagePreviews);
+fnames = {d(~[d.isdir]).name}';
+
+writecell(fnames,'deDupeHS.csv');
+
+%%
+
+% manually go through all the images and write whether they are to be
+% included or not (1 to include, 0 to exclude, in a second column)
 
 
