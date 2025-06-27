@@ -1,0 +1,7 @@
+Filtering nanolambda data for dark noise. 
+A) A histogram of the lowest luminance 5% of data, showing no data at 0 L+M, which suggests the presence of dark noise.
+B) As in A but for the bottom 15%, showing that it levels off around 2*10^-6 L+M (arbitrarily-scaled units)
+C) A plot of L+M against percentile luminance, showing that 2*10^-6 L+M roughly corresponds to 10%.
+D) 2D histogram of all NL data (note: axis limits differ from elsewhere in paper, to be able to show extreme chromaticities)
+E) As D, for lowest 10% of data (showing high variation)
+F) As D, for remaining 10:100% of data.

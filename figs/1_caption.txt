@@ -1,0 +1,8 @@
+2-dimensional histograms of the headcam data, split by location and season.
+
+For each image, a mean chromaticity is computed.
+For each season and location, these mean chromaticities are binned in two-dimensions (L/(L+M) and S/(L+M)).
+The brightness of the each 2D bin (colored pixel) indicates how many images have means which fall within that bin.
+The chromaticity of each bin indicates the chromaticity of that bin, though note that this is only provided as a rough approximation to help orient the reader within the space.
+
+Both season and location are significant on L/(L+M), S/(L+M), and CL axes, with main effects and interaction effects for each (see `/stats/GoPro_LLM.csv`, `/stats/GoPro_SLM.csv`, and `/stats/GoPro_CL.csv` for ANOVA tables).

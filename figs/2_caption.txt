@@ -1,0 +1,32 @@
+Chromatic means of the environmental (headcam) data and the psychophysics data, summarising varation between location and season, and additionally split by birth location.
+
+A) Means of headcam data, split by location and season, with 95% confidence intervals.
+
+Tromso headcam data is offset to the lower right (warmer chromaticities) relative to Oslo headcam data.
+Both locations show roughly the same seasonal trend: Winter is offset to lower right (warmer chromaticities) compared to other seasons; Autumn also, but less so.
+
+Within the dashed box the psychophysics (white setting) data is plotted, again split by location and season, with 95% confidence intervals.
+
+Olso psychophysics data is offset to the lower right (warmer chromaticities) - a pattern which conflicts with the inter-location difference seen in the headcam data.
+
+B) Zoom of the psychophysics data in A.
+
+C) The psychophysics data which was collected in Tromso, splot by whether participants were born above or below the arctic circle.
+
+---
+
+# Statistical tests
+
+## Go Pro
+See F1
+
+## Psychophysics - Testing Location and Season
+- Significant effect of location on L/(L+M), S/(L+M), and CL axes (see `/stats/PP_testing_LLM.csv`, `/stats/PP_testing_SLM.csv`, and `/stats/PP_testing_CL.csv` for ANOVA tables), and all other `/stats/PP_testing_*.csv` files for means and standard deviations.
+- No effect of season, or interaction effects.
+
+## Psychophysics - Birth Location and Season
+- L/(L+M): significant effect of birth season (not location)
+- S/(L+M): significant effect of birth location (not season)
+- CL: No significant effects
+- See `/stats/PP_birth_*.csv` for ANOVA tables
+
