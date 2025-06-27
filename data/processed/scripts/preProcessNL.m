@@ -24,7 +24,7 @@ if ~exist(saveDir,"dir")
 end
 
 % add the nanolambda scripts to the path
-addpath(['..',filesep,'..',filesep,'..',filesep,'sussex_nanoLambda',filesep]);
+addpath(['..',filesep,'..',filesep,'..',filesep,'sussex_nanolambda',filesep]);
 
 %% Preprocess data
 
@@ -82,19 +82,19 @@ CL = MacBtoCL(MBarray(:,[1,2])',[stdLLM,stdSLM]);
 
 %% Package neatly
 
-tidyData = NaN(6,size(concatNLdata,1));
+tidyData = NaN(size(concatNLdata,1),6);
 
-tidyData(1:3,:) = MBarray';
+tidyData(:,1:3) = MBarray;
 
 % seasonNames = {'Summer','Autumn','Winter','Spring'};
-tidyData(4,contains(concatNLdata.file,'Summer','IgnoreCase',true)) = 1;
-tidyData(4,contains(concatNLdata.file,'Autumn','IgnoreCase',true)) = 2;
-tidyData(4,contains(concatNLdata.file,'Winter','IgnoreCase',true)) = 3;
-tidyData(4,contains(concatNLdata.file,'Spring','IgnoreCase',true)) = 4;
+tidyData(contains(concatNLdata.file,'Summer','IgnoreCase',true),4) = 1;
+tidyData(contains(concatNLdata.file,'Autumn','IgnoreCase',true),4) = 2;
+tidyData(contains(concatNLdata.file,'Winter','IgnoreCase',true),4) = 3;
+tidyData(contains(concatNLdata.file,'Spring','IgnoreCase',true),4) = 4;
 
-tidyData(5,:) = contains(concatNLdata.file,'OSLO','IgnoreCase',true);
+tidyData(:,5) = contains(concatNLdata.file,'OSLO','IgnoreCase',true);
 
-tidyData(6,:) = CL;
+tidyData(:,6) = CL';
 
 writematrix(tidyData,[saveDir,filesep,'NL_sub.csv']);
 writematrix(concatNLdata.when,[saveDir,filesep,'NL_when.csv'])

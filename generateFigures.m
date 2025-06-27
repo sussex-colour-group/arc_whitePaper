@@ -28,8 +28,7 @@ addpath(genpath(['.',filesep,'sussex_nanolambda']));
 
 data.GoPro = readmatrix(paths.GoProProcessedData)'; % order: LLM, SLM, L+M, season, location, CL
 
-data.NL = load(paths.NLProcessedData,'MBarray_concat'); % order: LLM, SLM, L+M, season, location, CL (`sussex_nanolambda/arc_plotMB.m`)
-data.NL = data.NL.MBarray_concat;
+data.NL = readmatrix(paths.NLProcessedData)'; % order: LLM, SLM, L+M, season, location, CL (`sussex_nanolambda/arc_plotMB.m`)
 data.NL_denoised = removeNLdarknoise(data.NL,10);
 
 data.HS = load(paths.HSProcessedData,'d');
