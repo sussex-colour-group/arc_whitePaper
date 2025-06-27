@@ -33,7 +33,7 @@ clc, clear, close all
 
 t = readtable(['..',filesep,'GoPro',filesep,'GoPro.csv']);
 
-mat = NaN([6,size(t,1)]);
+mat = NaN([size(t,1),6]);
 
 paths = getLocalPaths;
 data.PP = load(paths.PPProcessedData,'resultsTable');
@@ -43,37 +43,42 @@ stdSLM = std([data.PP.resultsTable.MeanSLM],"omitnan");
 for i = 1:size(t,1)
     try
 
-        mat(1,i) = t.meanMB_1(i);
-        mat(2,i) = t.meanMB_2(i);
-        mat(3,i) = t.meanMB_3(i);
+        mat(i,1) = t.meanMB_1(i);
+        mat(i,2) = t.meanMB_2(i);
+        mat(i,3) = t.meanMB_3(i);
 
                 % seasonNames = {'Summer','Autumn','Winter','Spring'};
         if strcmp(t.season{i},'Summer')
-            mat(4,i) = 1;
+            mat(i,4) = 1;
         elseif strcmp(t.season{i},'Autumn')
-            mat(4,i) = 2;
+            mat(i,4) = 2;
         elseif strcmp(t.season{i},'Winter')
-            mat(4,i) = 3;
+            mat(i,4) = 3;
         elseif strcmp(t.season{i},'Spring')
-            mat(4,i) = 4;
+            mat(i,4) = 4;
         end
 
         % locationNames = {'Tromso','Oslo'};
         if strcmp(t.location{i},'Tromso')
-            mat(5,i) = 0;
+            mat(i,5) = 0;
         elseif strcmp(t.location{i},'Oslo')
-            mat(5,i) = 1;
+            mat(i,5) = 1;
         end
 
         if isnan(t.meanMB_1(i)) % TODO The more robust way of doing this would be to edit MacBtoCL to return NaN when given NaN (it currently returns 0)
-            mat(6,i) = NaN;
+            mat(i,6) = NaN;
         else
-            mat(6,i) = MacBtoCL([t.meanMB_1(i);t.meanMB_2(i)],[stdLLM,stdSLM]);
+            mat(i,6) = MacBtoCL([t.meanMB_1(i);t.meanMB_2(i)],[stdLLM,stdSLM]);
         end
 
     catch
         % warning('data transformation issue') % this is commented out because we currently only process a subset of the data, so there's lots of NaN placeholders
     end
+end
+
+clearNaNs = true;
+if clearNaNs
+    mat(isnan(mat(:,1)),:) = [];
 end
 
 writematrix(mat,['..',filesep,'GoPro',filesep,'GoPro_sub.csv']);
