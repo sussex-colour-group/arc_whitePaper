@@ -108,11 +108,9 @@ for i = [1,2,6] % LLM, SLM, CL
     writecell(tbl.PPbirth{i},['stats',filesep,'PP_birth_',meta.paramNames{i},'.csv']);
 end
 
-
-
 %% White sniffer
 
-whiteSnifferFigure(data,meta); % TODO Add white sniffer bit
+whiteSnifferFigure(data,meta,paths);
 arc_saveFig([saveLocation,'3_whiteSniffer'],meta)
 
 %% Bright figure
