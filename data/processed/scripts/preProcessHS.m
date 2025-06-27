@@ -38,11 +38,10 @@ end
 
 %% Compute summary stats
 
-% TODO Replace absolute paths
-load("/home/danny/cisc2/projects/colour_arctic/code/arc_PsychophysicsAnalysis/whiteResultsTable.mat",'resultsTable'); %psychophysicsData
-
-stdLLM = std([resultsTable.MeanLLM],"omitnan");
-stdSLM = std([resultsTable.MeanSLM],"omitnan");
+localPaths = getLocalPaths;
+data.PP = readtable(paths.PPProcessedData);
+stdLLM = std([data.PP.MeanLLM],"omitnan");
+stdSLM = std([data.PP.MeanSLM],"omitnan");
 
 CLfactors = [stdLLM,stdSLM];
 

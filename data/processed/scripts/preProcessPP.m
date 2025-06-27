@@ -75,20 +75,14 @@ for i = 1:length(filesinfolder)
     end
 end
 
-% this needs to be done afterwards because it equates the std in both axes,
-% which can only be computed once we have all the data
+% Computing CL needs to be done afterwards because it equates the std in 
+% both axes, which can only be computed once we have all the data
+
+stdLLM = std([resultsTable.MeanLLM],"omitnan");
+stdSLM = std([resultsTable.MeanSLM],"omitnan");
 for i = 1:length(filesinfolder)
-    try
-        if isnan(resultsTable(i).MeanLLM) % TODO The more robust way of doing this would be to edit MacBtoCL to return NaN when given NaN (it currently returns 0)
-            resultsTable(i).CL = NaN;
-        else
-            resultsTable(i).CL = MacBtoCL([resultsTable(i).MeanLLM;resultsTable(i).MeanSLM],...
-                [std([resultsTable.MeanLLM],"omitnan"),...
-                std([resultsTable.MeanSLM],"omitnan")]);
-        end
-    catch
-        resultsTable(i).CL = NaN;
-    end
+    resultsTable(i).CL = MacBtoCL([resultsTable(i).MeanLLM;resultsTable(i).MeanSLM],...
+        [stdLLM,stdSLM]);
 end
 
 %% Load questionnaire data

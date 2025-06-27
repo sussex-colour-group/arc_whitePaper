@@ -65,16 +65,12 @@ for i = 1:size(t,1)
             mat(i,5) = 1;
         end
 
-        if isnan(t.meanMB_1(i)) % TODO The more robust way of doing this would be to edit MacBtoCL to return NaN when given NaN (it currently returns 0)
-            mat(i,6) = NaN;
-        else
-            mat(i,6) = MacBtoCL([t.meanMB_1(i);t.meanMB_2(i)],[stdLLM,stdSLM]);
-        end
-
     catch
         % warning('data transformation issue') % this is commented out because we currently only process a subset of the data, so there's lots of NaN placeholders
     end
 end
+
+mat(:,6) = MacBtoCL([t.meanMB_1,t.meanMB_2]',[stdLLM,stdSLM]);
 
 clearNaNs = true;
 if clearNaNs
