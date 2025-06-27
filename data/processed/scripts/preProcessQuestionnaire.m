@@ -37,5 +37,5 @@ jm_questionnaire_puller(paths,[outputDir,outputFn,'.csv'],columns)
 
 %% % for generating a "full" csv
 
-columns = "all";
-jm_questionnaire_puller(paths,[outputDir,outputFn,'_full.csv'],columns)
+% columns = "all";
+% jm_questionnaire_puller(paths,[outputDir,outputFn,'_full.csv'],columns)
