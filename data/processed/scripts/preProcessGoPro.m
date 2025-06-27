@@ -31,14 +31,18 @@ writetable(struct2table(fileList),['..',filesep,'GoPro',filesep,'GoPro.csv']);
 
 clc, clear, close all
 
+repoHomeDir = ['..',filesep,'..',filesep,'..'];
+addpath(repoHomeDir);
+addpath([repoHomeDir,filesep,'imageanalysis']);
+
 t = readtable(['..',filesep,'GoPro',filesep,'GoPro.csv']);
 
 mat = NaN([size(t,1),6]);
 
 paths = getLocalPaths;
-data.PP = load(paths.PPProcessedData,'resultsTable');
-stdLLM = std([data.PP.resultsTable.MeanLLM],"omitnan");
-stdSLM = std([data.PP.resultsTable.MeanSLM],"omitnan");
+data.PP = readtable(paths.PPProcessedData);
+stdLLM = std([data.PP.MeanLLM],"omitnan");
+stdSLM = std([data.PP.MeanSLM],"omitnan");
 
 for i = 1:size(t,1)
     try
@@ -47,7 +51,7 @@ for i = 1:size(t,1)
         mat(i,2) = t.meanMB_2(i);
         mat(i,3) = t.meanMB_3(i);
 
-                % seasonNames = {'Summer','Autumn','Winter','Spring'};
+        % seasonNames = {'Summer','Autumn','Winter','Spring'};
         if strcmp(t.season{i},'Summer')
             mat(i,4) = 1;
         elseif strcmp(t.season{i},'Autumn')

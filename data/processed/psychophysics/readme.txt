@@ -1,4 +1,4 @@
-resultsTable.csv and resultsTable.mat contain the same data in different formats
+resultsTable.csv contains:
 
 - testLocation	
 - ppt	

@@ -131,5 +131,5 @@ end
 if ~exist(fileparts(localPaths.PPProcessedData),"dir")
     mkdir(fileparts(localPaths.PPProcessedData))
 end
-save([localPaths.PPProcessedData,'.mat'],'resultsTable');
-writetable(struct2table(resultsTable),[localPaths.PPProcessedData,'.csv'])
+
+writetable(struct2table(resultsTable),[localPaths.PPProcessedData])

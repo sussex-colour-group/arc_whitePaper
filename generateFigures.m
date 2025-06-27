@@ -35,8 +35,8 @@ data.NL_denoised = removeNLdarknoise(data.NL,10);
 data.HS = load(paths.HSProcessedData,'d');
 data.HS = transformHSData(data.HS.d);
 
-data.PP = load(paths.PPProcessedData,'resultsTable');
-[data.PP,data.PP_pptCodes] = transformPPData(data.PP.resultsTable);
+data.PP = readtable(paths.PPProcessedData);
+[data.PP,data.PP_pptCodes] = transformPPData(data.PP);
 data.PP_excludeRecentTravellers = false;
 data.PP_pptsToExclude = getExclusions(data.PP_excludeRecentTravellers);
 [data.PP,data.PP_pptCodes] = excludePpts(data.PP,data.PP_pptCodes,data.PP_pptsToExclude);
