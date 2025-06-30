@@ -1,6 +1,7 @@
 # image files, which will change frequently - I may add them later though
 *.svg 
 *.png
+*.pdf
 
 # MATLAB autosave files
 *.asv 
