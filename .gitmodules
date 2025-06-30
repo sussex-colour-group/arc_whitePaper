@@ -1,12 +1,12 @@
 [submodule "arc_PsychophysicsAnalysis"]
 	path = arc_PsychophysicsAnalysis
 	url = https://github.com/da5nsy/arc_PsychophysicsAnalysis
-[submodule "sussex_nanolambda"]
-	path = sussex_nanolambda
-	url = https://github.com/johnmaule/sussex_nanolambda
 [submodule "hyperspectralAnalysis"]
 	path = hyperspectralAnalysis
 	url = https://github.com/sussex-colour-group/hyperspectralAnalysis.git
 [submodule "imageanalysis"]
 	path = imageanalysis
 	url = https://github.com/sussex-colour-group/imageanalysis.git
+[submodule "nanolambda"]
+	path = nanolambda
+	url = https://github.com/sussex-colour-group/nanolambda.git

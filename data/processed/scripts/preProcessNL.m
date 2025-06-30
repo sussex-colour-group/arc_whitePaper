@@ -24,7 +24,7 @@ if ~exist(saveDir,"dir")
 end
 
 % add the nanolambda scripts to the path
-addpath(['..',filesep,'..',filesep,'..',filesep,'sussex_nanolambda',filesep]);
+addpath(['..',filesep,'..',filesep,'..',filesep,'nanolambda',filesep]);
 
 %% Preprocess data
 
@@ -45,7 +45,7 @@ if strcmp(response,'y')
     % concatenate the MATLAB files from above into a pair of big csv files
     % (one for spectra, and one for everything else)
     % warning: this takes quite a long time to run (~10 mins)
-    arc_NLconcat(saveDir,saveDir)
+    NLconcat(saveDir,saveDir)
 
 end
 

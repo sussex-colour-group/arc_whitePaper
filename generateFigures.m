@@ -22,7 +22,7 @@ showStats = true;
 
 paths = getLocalPaths;
 addpath(genpath(['.',filesep,'imageanalysis']));
-addpath(genpath(['.',filesep,'sussex_nanolambda']));
+addpath(genpath(['.',filesep,'nanolambda']));
 
 %% Load and transform data
 
