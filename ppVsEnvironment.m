@@ -101,7 +101,7 @@ for location = [0,1]
     end
 end
 
-if isfield(meta,"tweakLabels") && meta.tweakLabels % only move labels when data exists
+if isfield(meta,"tweakLabels") && meta.tweakLabels.env % only move labels when data exists
     set(labelH{2,4},'Position',[0.701131954120445,0.773382145134032,0]); % Oslo Spring
     set(labelH{1,4},'Position',[0.736740234933641,0.607644592475383,0]); % Tromso Spring
     set(labelH{1,2},'Position',[0.740701788923573,0.544625123087298,0]); % Tromso Autumn
@@ -167,7 +167,7 @@ for location = [0,1]
     end
 end
 
-if isfield(meta,"tweakLabels") && meta.tweakLabels % only move labels when data exists
+if isfield(meta,"tweakLabels") && meta.tweakLabels.PP % only move labels when data exists
     set(labelH{1,1},'Position',[0.689543835145079,1.262732455108744,0]); % Tromso Summer
     set(labelH{1,4},'Position',[0.690951856212633,1.221722798234143,0]); % Tromso Spring
     set(labelH{1,3},'Position',[0.692259063412531,1.189483961064295,0]); % Tromso Winter

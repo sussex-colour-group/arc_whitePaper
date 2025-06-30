@@ -62,7 +62,8 @@ end
 %% Psychophysics vs environment
 
 meta.envLabel = 'Head Cam';
-meta.tweakLabels = true;
+meta.tweakLabels.env = true;
+meta.tweakLabels.PP = true;
 
 ppVsEnvironment(data.GoPro,data.PP,meta);
 arc_saveFig([saveLocation,'2_PPvsE'],meta)
@@ -136,7 +137,8 @@ arc_saveFig([saveLocation,'SI1_2Dhist_HS','_',meta.figType],meta)
 
 %% PP vs env but for HS instead of GoPro
 
-meta.tweakLabels = false;
+meta.tweakLabels.env = false;
+meta.tweakLabels.PP = true;
 
 meta.envLabel = 'Hyperspectral';
 ppVsEnvironment(data.HS,data.PP,meta);
