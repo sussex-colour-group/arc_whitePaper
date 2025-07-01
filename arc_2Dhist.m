@@ -37,6 +37,7 @@ end
 % colorbar
 axis tight square
 set(gca,'TickDir','out')
+set(gca,'YDir','normal')
 
 if exist("specLocus","var") && specLocus == true
 
