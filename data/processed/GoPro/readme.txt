@@ -7,3 +7,5 @@ Variables:
 - season (1 = 'Summer', 2 = 'Autumn', 3 = 'Winter', 4 = 'Spring')
 - location (0 = 'Tromso', 1 = 'Oslo')
 - CL
+
+Produced by arc_whitePaper\data\processed\GoPro\preProcessGoPro.m
