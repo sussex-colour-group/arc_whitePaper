@@ -8,11 +8,18 @@ function localPaths = getLocalPaths
 
 localPaths.GoProRawData = '';
 localPaths.GoProProcessedData = '';
+localPaths.GoProProcessedData_whiteSniffer = '';
 
 localPaths.NLRawData = '';
 localPaths.NLProcessedData = '';
 
 localPaths.HSRawData = '';
+localPaths.HSLMSImages = '';
 localPaths.HSProcessedData = '';
+
+localPaths.PPRawData = '';
+localPaths.PPProcessedData = '';
+
+localPaths.QuestionnaireRawData = '';
 
 end
