@@ -67,7 +67,7 @@ end
 % Add cerulean line
 [~,ceruleanLine] = getCeruleanLine();
 plot(ceruleanLine(1,:),ceruleanLine(2,:),...
-    'k:','DisplayName','Cerulean Line');
+    'k:','DisplayName','Cerulean Line','LineWidth',1.5);
 
 rectangle('Position',[meta.edgesZoomedIn{1,1}(1), meta.edgesZoomedIn{1,2}(1),...
     meta.edgesZoomedIn{1,1}(end) - meta.edgesZoomedIn{1,1}(1), meta.edgesZoomedIn{1,2}(end) - meta.edgesZoomedIn{1,2}(1)],...
@@ -79,7 +79,7 @@ text(meta.edgesZoomedIn{1,1}(1) - 0.005, meta.edgesZoomedIn{1,2}(end) + 0.1,...
     'HorizontalAlignment','left',...
     'FontSize',meta.fontSize.big)
 
-text(0.707313691507799,0.826982495667245,0,...
+text(0.707313691507799,0.3,0,...
     meta.envLabel,...
     'HorizontalAlignment','left',...
     'FontSize',meta.fontSize.big)
@@ -102,15 +102,18 @@ for location = [0,1]
 end
 
 if isfield(meta,"tweakLabels") && meta.tweakLabels.env % only move labels when data exists
-    set(labelH{2,4},'Position',[0.701131954120445,0.773382145134032,0]); % Oslo Spring
-    set(labelH{1,4},'Position',[0.736740234933641,0.607644592475383,0]); % Tromso Spring
-    set(labelH{1,2},'Position',[0.740701788923573,0.544625123087298,0]); % Tromso Autumn
+    set(labelH{2,4},'Position',[0.731131954120445,0.773382145134032,0]); % Oslo Spring
+    set(labelH{1,4},'Position',[0.736740234933641,0.567644592475383,0]); % Tromso Spring
+    set(labelH{1,2},'Position',[0.740701788923573,0.504625123087298,0]); % Tromso Autumn
+    set(labelH{1,1},'Position',[0.720740234933641,0.677644592475383,0]); % Tromso Autumn
+
 end
 
 A_daspect = daspect(gca);
 A_xticks = xticks();
 A_yticks = yticks();
-
+set(gca,'FontSize',meta.fontSize.small)
+text(-0.15,1.0,'(a)','Units','normalized','FontSize',meta.fontSize.big,'VerticalAlignment','bottom');
 %% B
 % Plot PP again, but small
 
@@ -148,7 +151,7 @@ end
 % Add cerulean line
 [~,ceruleanLine] = getCeruleanLine();
 plot(ceruleanLine(1,:),ceruleanLine(2,:),...
-    'k:','DisplayName','Cerulean Line');
+    'k:','DisplayName','Cerulean Line','LineWidth',1.5);
 
 clear labelH
 for location = [0,1]
@@ -186,7 +189,8 @@ title('Testing location',...
 
 xticks(A_xticks);
 yticks(A_yticks);
-
+set(gca,'FontSize',meta.fontSize.small)
+text(-0.15,1.0,'(b)','Units','normalized','FontSize',meta.fontSize.big,'VerticalAlignment','bottom');
 %% C
 % Split by birth season
 
@@ -222,7 +226,7 @@ end
 % Add cerulean line
 [~,ceruleanLine] = getCeruleanLine();
 plot(ceruleanLine(1,:),ceruleanLine(2,:),...
-    'k:','DisplayName','Cerulean Line');
+    'k:','DisplayName','Cerulean Line','LineWidth',1.5);
 
 %labels
 clear labelH
@@ -236,12 +240,13 @@ for aboveBelow = [0,1]
 
 end
 
-title('Birth Location (Tromsø ppts only)',...
+title('Birth Location (Tromsø participants only)',...
     'FontSize',meta.fontSize.big,'FontWeight','normal')
 
 xticks(A_xticks);
 yticks(A_yticks);
-
+set(gca,'FontSize',meta.fontSize.small)
+text(-0.15,1.0,'(c)','Units','normalized','FontSize',meta.fontSize.big,'VerticalAlignment','bottom');
 %% zoom lines
 
 % axes('Visible','off')
