@@ -83,6 +83,14 @@ axCB.YLabel.Position(1) = 6;
 set(gca,'FontSize',14)
 arc_saveFig([saveLocation,'1_2Dhist_GoPro','_',meta.figType],meta)
 
+% arc_2Dhist(data.GoPro(1,:),data.GoPro(2,:),meta)
+% xlabel('L/(L+M)','FontSize',meta.fontSize.small)
+% ylabel('S/(L+M)','FontSize',meta.fontSize.small)
+% arc_saveFig([saveLocation,'1_2Dhist_GoPro_A','_',meta.figType],meta)
+%
+% arc_2Dhist_splitByLocationAndSeason(data.GoPro,meta);
+% arc_saveFig([saveLocation,'1_2Dhist_GoPro_B','_',meta.figType],meta)
+
 for i = [1,2,6] % LLM, SLM, CL
     [~,tbl.GoPro{i},stats.GoPro{i}] = anovan(data.GoPro(i,:),...
         {data.GoPro(4,:), data.GoPro(5,:)},... % test season, test location
