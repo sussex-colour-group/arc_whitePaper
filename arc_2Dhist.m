@@ -1,4 +1,4 @@
-function arc_2Dhist(x,y,meta,specLocus)
+function [minLLM,maxLLM,minSLM,maxSLM,minLUM,maxLUM]=arc_2Dhist(x,y,meta,specLocus)
 
 if strcmp(meta.figType, "colour") % use hues per bin
 
@@ -20,6 +20,12 @@ if strcmp(meta.figType, "colour")
     histmatrix = histcounts2(x,y,...
         'XBinEdges',meta.edges{1,1},'YBinEdges',meta.edges{1,2})';
     LandMColour = 0.01.*((histmatrix.^powernorm)./(max(max((histmatrix.^powernorm)))));
+    minLUM=min(LandMColour(:));
+    maxLUM=max(LandMColour(:));
+    minLLM=min(LLMColour(:));
+    minSLM=min(SLMColour(:));
+    maxLLM=max(LLMColour(:));
+    maxSLM=max(SLMColour(:));
     LMS = MacBToLMS(LLMColour,SLMColour,LandMColour);
     RGBmatrix = ImageLMSToRGB(LMS2RGB,LMS);
 

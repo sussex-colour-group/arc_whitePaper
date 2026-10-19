@@ -2,10 +2,10 @@ clear, clc, close all
 
 % figure meta
 meta.figSize = [100,100,1000,500]; % first two values are location, second two are size
-meta.fontSize.big   = 15;
-meta.fontSize.small = 10;
+meta.fontSize.big   = 18;
+meta.fontSize.small = 14;
 meta.edges = {linspace(0.66,0.82,40) linspace(0,2,40)};
-meta.pltCols = {'r','b'};
+meta.pltCols = {[0 0 .5],[.5 0 0]}; %Tromso blue, Oslo red
 meta.figType = 'colour'; % 'grayscale' or 'colour', for the 2D histograms
 meta.paramNames = {'LLM', 'SLM', 'L+M', 'test season', 'test location','CL','birth season','birth location'};
 
@@ -42,7 +42,45 @@ data.PP_pptsToExclude = getExclusions(data.PP_excludeRecentTravellers);
 
 %% 2D histogram plots, split by location and season
 
-arc_2Dhist_splitByLocationAndSeason(data.GoPro,meta);
+[minLLM,maxLLM,minSLM,maxSLM,minLUM,maxLUM]=arc_2Dhist_splitByLocationAndSeason(data.GoPro,meta);
+
+%make colour bar
+LLM_x=linspace(minLLM,0.7479,30);
+SLM_x=linspace(1.5,0.15,30);
+t=linspace(0,1,400);
+LUM_x=minLUM+(maxLUM-minLUM).*sqrt(t);
+LLM_mat=repmat(LLM_x,400,1);
+SLM_mat=repmat(SLM_x,400,1);
+LUM_mat=[repmat(LUM_x,30,1)].';
+RGB = SelectRGBs('NSDFMRI');
+LMS = SelectConeFundamentals('StockmanMacleodJohnson');
+[~,LMS2RGB] = RGBToLMS(LMS,RGB,0);
+LMS = MacBToLMS(LLM_mat,SLM_mat,LUM_mat);
+RGBmatrix = ImageLMSToRGB(LMS2RGB,LMS);
+colMax=max(RGBmatrix,[],[1 3]);   
+RGBmatrix=RGBmatrix./colMax;       
+fig = gcf;                 
+t = findall(fig,'Type','tiledlayout');
+if ~isempty(t)
+    t.Units = 'normalized';
+    t.OuterPosition = [0 0 1 1];  
+end
+
+axCB = axes(fig,'Units','normalized','Position',[0.92 0.35 0.01 0.35]);
+image(axCB,'XData',[0 1],'YData',[0 1],'CData',RGBmatrix);  
+axCB.YDir='normal';    
+axCB.XLim=[0 1];
+axCB.YLim=[0 1];
+axCB.XTick=[];           
+axCB.YAxisLocation ='right';      
+axCB.YTick=0:0.25:1;      
+axCB.TickDir='out';         
+box(axCB,'on');
+ytickformat(axCB,'%.1f'); 
+ylabel(axCB,'Proportion of pixels','Rotation',90,'VerticalAlignment','bottom');
+axCB.YLabel.Units = 'normalized';
+axCB.YLabel.Position(1) = 6;  
+set(gca,'FontSize',14)
 arc_saveFig([saveLocation,'1_2Dhist_GoPro','_',meta.figType],meta)
 
 for i = [1,2,6] % LLM, SLM, CL
@@ -61,12 +99,14 @@ end
 
 %% Psychophysics vs environment
 
-meta.envLabel = 'Head Cam';
+meta.envLabel = 'Head-cam';
 meta.tweakLabels.env = true;
 meta.tweakLabels.PP = true;
-
+meta.fontSizeSmall=18;
 ppVsEnvironment(data.GoPro,data.PP,meta);
 arc_saveFig([saveLocation,'2_PPvsE'],meta)
+
+
 
 % testing location/season effects
 for i = [1,2,6] % LLM, SLM, CL

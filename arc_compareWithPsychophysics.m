@@ -89,7 +89,7 @@ if strcmp(meta.regression.type,"global")
         [0,0,0],'LineStyle','none','FaceAlpha',0.1,'DisplayName','std');
 
     xlim([min(lowerBound),max(upperBound)])
-    xticks([10,xticks]);
+    xticks([xticks]);
 
     xlabel('percentile')
     ylabel('nanolambda-psychophysics difference')
