@@ -154,6 +154,16 @@ for i = [1,2,6] % LLM, SLM, CL
         disp(tbl.PPbirth{i})
     end
     writecell(tbl.PPbirth{i},['stats',filesep,'PP_birth_',meta.paramNames{i},'.csv']);
+
+    % means and SD of birth effect
+    for location = 0
+        for aboveBelow = [0,1]
+            writematrix(mean(data.PP(i,data.PP(5,:) == location & data.PP(8,:) == aboveBelow),"omitnan"),...
+                ['stats',filesep,'PP_birth_',meta.paramNames{i},'_mean_',meta.locationNames{location+1},'_',meta.aboveBelowNames{aboveBelow+1},'.csv']);
+            writematrix(std(data.PP(i,data.PP(5,:) == location & data.PP(8,:) == aboveBelow),"omitnan"),...
+                ['stats',filesep,'PP_birth_',meta.paramNames{i},'_std_',meta.locationNames{location+1},'_',meta.aboveBelowNames{aboveBelow+1},'.csv']);
+        end
+    end
 end
 
 %% White sniffer
